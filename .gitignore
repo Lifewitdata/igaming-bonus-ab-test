@@ -1,0 +1,30 @@
+# Data & generated outputs (regenerate via `bonus-ab-test run`)
+data/*.parquet
+data/*.csv
+outputs/
+outputs_ci/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Env
+.venv/
+venv/
+.env
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
