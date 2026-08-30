@@ -85,7 +85,7 @@ and the dashboard can never drift out of sync with each other.
 ## Quickstart
 
 ```bash
-git clone https://github.com/<you>/igaming-bonus-ab-test.git
+git clone https://https://github.com/Lifewitdata/<you>/igaming-bonus-ab-test.git
 cd igaming-bonus-ab-test
 pip install -e ".[dev]"
 
