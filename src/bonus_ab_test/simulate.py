@@ -122,4 +122,5 @@ def simulate_players(cfg: SimulationConfig = DEFAULT_CONFIG) -> pl.DataFrame:
     ).drop("signup_offset")
 
     logger.info("Simulation complete: %s rows x %s cols", f"{df.height:,}", df.width)
-    return df
+    from bonus_ab_test.gaming import add_gaming_outcomes
+    return add_gaming_outcomes(df, cfg.seed)

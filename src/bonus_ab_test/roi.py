@@ -1,4 +1,4 @@
-"""Bonus ROI calculation."""
+"""Legacy deposit-volume ratio only. Use gaming.experiment_readout for revenue ROI."""
 
 from __future__ import annotations
 
@@ -14,15 +14,7 @@ class RoiResult:
     roi: float
 
     def recommendation(self, significant_lift: bool) -> str:
-        if significant_lift and self.roi >= 1.0:
-            return "ROLL OUT: statistically significant lift and bonus pays for itself."
-        if significant_lift and self.roi < 1.0:
-            return (
-                "DO NOT ROLL OUT AS BLANKET OFFER: lift is significant but bonus "
-                "cost exceeds incremental volume. Consider targeting only "
-                "high-lift segments or lowering the match cap."
-            )
-        return "DO NOT ROLL OUT: lift is not statistically significant."
+        return "DO NOT ROLL OUT AS BLANKET OFFER based on deposit volume: this proxy is not revenue ROI."
 
 
 def compute_roi(

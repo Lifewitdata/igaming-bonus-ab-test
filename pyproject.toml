@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bonus-ab-test"
-version = "0.1.0"
+version = "0.2.0"
 description = "A/B test analytics toolkit for an iGaming deposit-bonus campaign: funnel analysis, significance testing, ROI, and segmentation, built on Polars."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -12,6 +12,8 @@ license = { text = "MIT" }
 authors = [{ name = "Your Name" }]
 dependencies = [
     "polars>=1.0",
+    "duckdb>=1.1",
+    "streamlit>=1.35",
     "numpy>=1.26",
     "scipy>=1.11",
     "matplotlib>=3.8",

@@ -1,0 +1,26 @@
+{
+  "raw_join": {
+    "median_seconds": 0.09134408599999233,
+    "runs": [
+      0.09396098600001324,
+      0.09073679700003368,
+      0.08809617700001127,
+      0.09688471900000195,
+      0.09134408599999233
+    ]
+  },
+  "materialized": {
+    "median_seconds": 0.004186937999975271,
+    "runs": [
+      0.004259117000003698,
+      0.004064342999981818,
+      0.004913274999978512,
+      0.004186937999975271,
+      0.004172341000014512
+    ]
+  },
+  "engine": "DuckDB 2.0.0",
+  "players": 3000000,
+  "checks": "passed",
+  "note": "Local warm-cache benchmark; not ClickHouse performance. Materialization has build/storage costs."
+}

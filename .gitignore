@@ -1,7 +1,6 @@
-# Data & generated outputs (regenerate via `bonus-ab-test run`)
+# Data (regenerate via `bonus-ab-test run`; reports under outputs/ are committed)
 data/*.parquet
 data/*.csv
-outputs/
 outputs_ci/
 
 # Python
@@ -28,3 +27,5 @@ venv/
 
 # Jupyter
 .ipynb_checkpoints/
+
+data/*.duckdb*

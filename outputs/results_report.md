@@ -1,81 +1,27 @@
-# Bonus A/B Test — Results Report
+# Bonus experiment: gaming revenue readout
+Synthetic data; 3,000,000 fully observed assigned players. No real business impact claimed.
 
-Dataset: 3,000,000 players
+## Decision
+DO NOT ROLL OUT: contribution after bonus costs declines.
 
-## 1. Funnel by Group
+Primary metric: 30-day contribution per assigned player (GGR minus bonus expense).
+Treatment minus control: $-15.285; 95% CI [$-15.360, $-15.211]; p=0.
+SRM p=0.2539. Net incremental bonus ROI: -0.9619247480645462 (ratio; undefined when incremental cost is not positive).
 
-| group     |   signups |   deposits |   signup_to_deposit_rate |   deposit_to_bet_rate |   repeat_deposit_rate |   avg_first_deposit |
-|:----------|----------:|-----------:|-------------------------:|----------------------:|----------------------:|--------------------:|
-| control   |   1499012 |     544129 |                 0.362992 |              0.870545 |              0.293419 |             45.0052 |
-| treatment |   1500988 |     612024 |                 0.407747 |              0.880461 |              0.348316 |             52.0389 |
+## Group KPIs
+| group     |   players |   stakes_30d |    wins_30d |     ggr_30d |   bonus_cost |   contribution_30d |   bet_count_30d |   active_players |   d7_retention |   d30_retention |      rtp |
+|:----------|----------:|-------------:|------------:|------------:|-------------:|-------------------:|----------------:|-----------------:|---------------:|----------------:|---------:|
+| control   |   1499012 |  5.68093e+07 | 5.34205e+07 | 3.38876e+06 |  0           |        3.38876e+06 |        17046230 |           473689 |      0.0947984 |       0.0472938 | 0.940349 |
+| treatment |   1500988 |  7.24767e+07 | 6.81754e+07 | 4.30138e+06 |  2.38515e+07 |       -1.95501e+07 |        19393418 |           538863 |      0.111249  |       0.055736  | 0.940652 |
 
-## 2. Statistical Significance
+## Funnel
+| group     |   signups |   deposits |   bets |   repeat_deposits |   avg_first_deposit |   total_bonus_cost |   total_ltv_30d |   signup_to_deposit_rate |   deposit_to_bet_rate |   repeat_deposit_rate |
+|:----------|----------:|-----------:|-------:|------------------:|--------------------:|-------------------:|----------------:|-------------------------:|----------------------:|----------------------:|
+| control   |   1499012 |     544129 | 473689 |            159658 |             45.0052 |        0           |     2.83859e+07 |                 0.362992 |              0.870545 |              0.293419 |
+| treatment |   1500988 |     612024 | 538863 |            213178 |             52.0389 |        2.38515e+07 |     3.70528e+07 |                 0.407747 |              0.880461 |              0.348316 |
 
-**Signup → Deposit conversion**
-- Control: 36.2992%  |  Treatment: 40.7747%
-- Absolute lift: +4.4756% (relative: +12.33%)
-- z = 79.64, p-value = 0.00e+00, 95% CI on lift: [4.3655%, 4.5856%]
-- **Statistically significant at α = 0.05**
-
-**Repeat-deposit rate within 30d (among depositors)**
-- Control: 29.3419%  |  Treatment: 34.8316%
-- Absolute lift: +5.4897% (relative: +18.71%)
-- z = 63.03, p-value = 0.00e+00, 95% CI on lift: [5.3197%, 5.6597%]
-- **Statistically significant at α = 0.05**
-
-**First deposit amount (among depositors)**
-- Control mean: $45.01  |  Treatment mean: $52.04
-- Difference: $+7.03
-- t = 118.51, p-value = 0.00e+00
-- **Statistically significant at α = 0.05**
-
-## 3. Bonus ROI
-
-- Total bonus paid out (treatment group): **$23,851,495.03**
-- Treatment group total 30-day deposit volume (LTV proxy): $37,052,751.38
-- Expected volume at control's conversion/spend rate: $28,423,287.60
-- **Estimated incremental 30-day deposit volume: $8,629,463.78**
-- **ROI (incremental volume / bonus cost): 0.36x**
-
-## 4. Segmentation: Signup → Deposit Lift by Segment
-
-**By country:**
-| country   |   treatment |   control |   lift_pp |
-|:----------|------------:|----------:|----------:|
-| CA        |      0.4357 |    0.3894 |    0.0463 |
-| NG        |      0.3967 |    0.3510 |    0.0457 |
-| IN        |      0.4048 |    0.3595 |    0.0452 |
-| BR        |      0.4248 |    0.3797 |    0.0451 |
-| ZA        |      0.4145 |    0.3699 |    0.0446 |
-| PH        |      0.3941 |    0.3499 |    0.0442 |
-| DE        |      0.3838 |    0.3397 |    0.0440 |
-| MX        |      0.4042 |    0.3612 |    0.0430 |
-
-**By device:**
-| device   |   treatment |   control |   lift_pp |
-|:---------|------------:|----------:|----------:|
-| mobile   |      0.4136 |    0.3687 |    0.0449 |
-| desktop  |      0.3927 |    0.3484 |    0.0444 |
-
-**By vertical:**
-| vertical   |   treatment |   control |   lift_pp |
-|:-----------|------------:|----------:|----------:|
-| casino     |      0.4027 |    0.3570 |    0.0457 |
-| sportsbook |      0.4160 |    0.3727 |    0.0433 |
-
-**By channel:**
-| channel     |   treatment |   control |   lift_pp |
-|:------------|------------:|----------:|----------:|
-| paid_search |      0.4075 |    0.3613 |    0.0462 |
-| referral    |      0.4075 |    0.3617 |    0.0458 |
-| affiliate   |      0.4090 |    0.3635 |    0.0455 |
-| paid_social |      0.4076 |    0.3633 |    0.0443 |
-| organic     |      0.4067 |    0.3637 |    0.0430 |
-
-## 5. Charts
-
-Saved to `outputs/`: `funnel_comparison.png`, `conversion_rates.png`, `lift_by_country.png`
-
-## 6. Recommendation
-
-DO NOT ROLL OUT AS BLANKET OFFER: lift is significant but bonus cost exceeds incremental volume. Consider targeting only high-lift segments or lowering the match cap.
+## Interpretation and limitations
+Deposits are not revenue. GGR = settled stakes minus winnings; contribution deducts bonus expense but excludes taxes, provider fees and operating costs. Net ROI = incremental contribution / incremental bonus cost, normalized to the treatment population.
+All assigned players, including non-depositors, remain in the primary analysis. Depositor-only comparisons are descriptive because deposit is affected by treatment.
+Secondary retention/conversion tests use Holm adjustment; see experiment_results.json. Do not stop early on significance. Segment findings generate hypotheses, not rollout authorization.
+All 30-day outcomes are simulated after signup; signup-cohort trends are not calendar-day revenue. Review revenue and retention guardrails before a real rollout.
